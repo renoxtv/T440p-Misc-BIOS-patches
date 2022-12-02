@@ -1,0 +1,41 @@
+# Patch string format
+# FileGuid SectionType PatchType:FindPatternOrOffset:ReplacePattern 
+# Please ensure that the latest symbol in patch string is space
+
+# Possible section types:
+#  PE32 image                    10
+#  Position-independent code     11
+#  TE Image                      12
+#  DXE Dependency                13
+#  Version information           14
+#  User interface string         15
+#  16-bit code                   16
+#  Guided freeform               18
+#  Raw data                      19
+#  PEI Dependency                1B
+#  SMM Dependency                1C
+# Please do not try another section types, it can make the resulting image broken
+
+# Possible patch types:
+#  P - pattern-based, first parameter is a pattern to find, second - a pattern to replace
+#  O - offset-based, first parameter is hexadecimal offset, second - a pattern to replace
+# Patterns can have . as "any possible value" symbol
+
+#----------------------------------------------------------------------------------
+# T440p misc patches
+# Made by renoxtv
+#----------------------------------------------------------------------------------
+
+# LenovoSetupConfigDxe | SATA options, Fn wake functionality, disable internal battery
+5FC8EEE0-9BF2-498F-B4D3-C51ED4C87BB4 10 P:0802000200000029020A82450A0100:0802000200000029020A82450A0000
+5FC8EEE0-9BF2-498F-B4D3-C51ED4C87BB4 10 P:2902290229020A82450A0100:2902290229020A82450A0000
+5FC8EEE0-9BF2-498F-B4D3-C51ED4C87BB4 10 P:8608007D000A824602:8608007D000A824702
+
+# PlatformHiiAdvancedDxe | Set PROCHOT default value to 100 (stock 92) degrees
+CFEF94C4-4167-466A-8893-8779459DFA86 10 P:08000000000000005B0D0100000800000000000000290229020A82450A010000000000000005A6420442045D:00000000000000005B0D0100000000000000000000290229020A82450A010000000000000005A6420442045D
+
+# PlatformHiiAdvancedDxe | Unhide CFG Lock option
+CFEF94C4-4167-466A-8893-8779459DFA86 10 P:450A010000000000000005A60705080558:450A000000000000000005A60705080558
+
+# PlatformAcpiTable | Precision touchpad ID spoof
+7E374E25-8E01-4FEE-87F2-390C23C606CD 10 P:30AE00365F484944A10B700C30AE0039:30AE006A5F484944A10B700C30AE006B
