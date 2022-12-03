@@ -11,3 +11,7 @@ The 1st patch unlocks SATA options (AHCI/IDE) useful if you wanna install window
 3rd patch just unhides CFG Lock option in advanced settings, useful for hackintosh users.
 
 And the 4th patch enables spoofing of the touchpad ACPI ID to the one of T570. This allows you to install latest T570 precision touchpad drivers without any tweaking, inf modding etc. and is permanent. The only downside is that if you use the original T440p trackpad, the top trackpoint "buttons" don't work.
+
+If you wish to omit a certain patch, open the patches.txt file and place # at the beginning of the line with the particular patch.
+
+Usage: UEFIPatch.exe romname.rom patches.txt
